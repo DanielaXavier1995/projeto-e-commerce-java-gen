@@ -5,34 +5,18 @@ import java.util.List;
 
 public class Pedido extends Carrinho {
 	
-	private int numero;
-	private LocalDate dataAbertura;
+//	private int numero;
+//	private LocalDate dataAbertura;
 	
 	public Pedido(List<Produto> produtoList) {
 		super(produtoList);
 	}
 
-	public Pedido(List<Produto> produtoList, int numero, LocalDate dataAbertura) {
-		super(produtoList);
-		this.numero = numero;
-		this.dataAbertura = dataAbertura;
-	}
-
-	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int numero) {
-		this.numero = gerarNumero(0);
-	}
-
-	public LocalDate getDataAbertura() {
-		return dataAbertura;
-	}
-
-	public void setDataAbertura(LocalDate dataAbertura) {
-		this.dataAbertura = LocalDate.now();
-	}
+//	public Pedido(List<Produto> produtoList, int numero, LocalDate dataAbertura) {
+//		super(produtoList);
+//		this.numero = numero;
+//		this.dataAbertura = dataAbertura;
+//	}
 	
 	public int gerarNumero(int numero) {
 		return ++numero;
@@ -44,8 +28,10 @@ public class Pedido extends Carrinho {
 		System.out.println("*************************************************");
 		System.out.println("                      PEDIDO                     ");
 		System.out.println("*************************************************");
-		System.out.println("Numero: " + this.numero + "                      ");
+		System.out.println("Numero: " + gerarNumero(0) + "                   ");
 		System.out.println("*************************************************");
-		System.out.println("Código: " + this.dataAbertura + "                ");
+		System.out.println("Data: " + LocalDate.now() + "                    ");
+		System.out.println("*************************************************");
+		System.out.println("Total da compra: " + valorTotalCarrinho(0) + "   ");
 	}
 }

@@ -27,6 +27,13 @@ public abstract class Carrinho{
         this.produtoList.remove(produto);
     }
     
+    public float valorTotalCarrinho(float soma) {
+    	for (Produto p: produtoList) {
+    	    soma += p.getValor();
+    	}
+    	return soma;
+	}
+    
     public void vizualizarProduto() {
 		
 	    for (Produto p: produtoList) {

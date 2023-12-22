@@ -8,7 +8,6 @@ public class Produto {
 	private float valor;
 
 	public Produto(String nome, String codigo, String categoria, float valor) {
-		super();
 		this.nome = nome;
 		this.codigo = codigo;
 		this.categoria = categoria;
