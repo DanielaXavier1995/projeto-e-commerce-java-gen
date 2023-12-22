@@ -46,4 +46,21 @@ public class Produto {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+	
+public void vizualizarProduto() {
+		
+	
+		System.out.println("*************************************************");
+		System.out.println("               INFORMAÇÕES DO CARINHO            ");
+		System.out.println("*************************************************");
+		System.out.println("Nome: " + this.nome + "                        ");
+		System.out.println("*************************************************");
+		System.out.println("Código: " + this.codigo + "                    ");
+		System.out.println("*************************************************");
+		System.out.println("Categoria: " + this.categoria + "              ");
+		System.out.println("*************************************************");
+		System.out.println("Valor: " + this.valor + "                       ");
+		System.out.println("*************************************************");
+		
+    }
   }

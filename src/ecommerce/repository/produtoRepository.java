@@ -4,11 +4,11 @@ import ecommerce.model.Produto;
 
 public interface produtoRepository {
 	
-	public void procurarPorNumero(int numero);
+	public void procurarPorCodigo(String codigo);
 	public void listarTodos();
 	public void cadastrar(Produto produto);
 	public void atualizar(Produto produto);
-	public void deletar(int numero);
+	public void deletar(String codigoS);
 	
 	public void remover(int numero);
 	public void inserir(int numero);

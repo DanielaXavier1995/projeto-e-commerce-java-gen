@@ -8,6 +8,10 @@ public class Pedido extends Carrinho {
 	private String numero;
 	private LocalDate dataAbertura;
 	
+	public Pedido(List<Produto> produtoList) {
+		super(produtoList);
+	}
+
 	public Pedido(List<Produto> produtoList, String numero, LocalDate dataAbertura) {
 		super(produtoList);
 		this.numero = numero;
@@ -29,6 +33,8 @@ public class Pedido extends Carrinho {
 	public void setDataAbertura(LocalDate dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}
+	
+	
 
 	@Override
 	public void vizualizarProduto() {

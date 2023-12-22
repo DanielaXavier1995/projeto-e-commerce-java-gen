@@ -7,39 +7,39 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import ecommerce.controller.ProdutoController;
 import ecommerce.model.Pedido;
 import ecommerce.model.Produto;
 
 public class Menu {
 
 	public static Scanner leia = new Scanner(System.in);
+	
+	public static void cadastrar(ProdutoController produto) {
+
+		System.out.print("Digite o nome do produto: ");
+		String nome = leia.nextLine();
+		System.out.print("Digite o código do produto: ");
+		String codigo = leia.nextLine();
+		System.out.print("Digite a categoria do produto: ");
+		String categoria = leia.nextLine();
+		System.out.print("Digite o valor do produto (R$): ");
+		float valor = leia.nextFloat();
+		leia.skip("\\R?");
+	}
 
 	public static void main(String[] args) {
 		
 		Produto p1 = new Produto("toalha", "123", "vestuario", 75f);
 		
-		ArrayList<Produto> produtos = new ArrayList<Produto>();
-		produtos.add(p1);
-		
-		Pedido pedido = new Pedido(produtos, "222", LocalDate.of(2023, 12, 22));
-		
-		pedido.vizualizarProduto();
-		
-//		System.out.println("*************************************************");
-//		System.out.println("               INFORMAÇÕES DO CARINHO            ");
-//		System.out.println("*************************************************");
-//		System.out.println("Nome: " + p1.getNome() + "                        ");
-//		System.out.println("*************************************************");
-//		System.out.println("Código: " + p1.getCodigo() + "                    ");
-//		System.out.println("*************************************************");
-//		System.out.println("Categoria: " + p1.getCategoria() + "              ");
-//		System.out.println("*************************************************");
-//		System.out.println("Valor: " + p1.getValor()+ "                      ");
-//		System.out.println("*************************************************");
-//		System.out.println("Numero: " + pedido.getNumero()+ "                ");
-//		System.out.println("*************************************************");
-//		System.out.println("data: " + pedido.getDataAbertura()+ "            ");
-//		System.out.println("*************************************************");
+		ProdutoController produtos = new ProdutoController();
+//		
+//		ArrayList<Produto> produtos = new ArrayList<Produto>();
+//		produtos.add(p1);
+//		
+//		Pedido pedido = new Pedido(produtos, "222", LocalDate.of(2023, 12, 22));
+//		
+//		pedido.vizualizarProduto();
 
 		int opcao = 0, numero;
 		float valor;
@@ -83,17 +83,17 @@ public class Menu {
 			switch (opcao) {
 			case 1:
 				System.out.println("\n       Cadastrar Produto      \n");
-
+                cadastrar(produtos);
 				keyPress();
 				break;
 			case 2:
 				System.out.println("\n   Listar todos os Produtos  \n");
-                pedido.vizualizarProduto();
+                produtos.listarTodos();
 				keyPress();
 				break;
 			case 3:
-				System.out.println("\n Buscar produto por Numero \n");
-				System.out.print("Digite o número do Produto: ");
+				System.out.println("\n Buscar produto por Código \n");
+				System.out.print("Digite o Código do produto: ");
 
 				keyPress();
 				break;
