@@ -8,10 +8,10 @@ public interface produtoRepository {
 	public void listarTodos();
 	public void cadastrar(Produto produto);
 	public void atualizar(Produto produto);
-	public void deletar(String codigoS);
+	public void deletar(String codigo);
 	
-	public void remover(int numero);
-	public void inserir(int numero);
+	public void remover(String codigo);
+	public void inserir(String codigo);
 	public void mostrarPedido();
 
 }

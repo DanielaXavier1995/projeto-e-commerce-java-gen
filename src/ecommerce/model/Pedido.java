@@ -5,25 +5,25 @@ import java.util.List;
 
 public class Pedido extends Carrinho {
 	
-	private String numero;
+	private int numero;
 	private LocalDate dataAbertura;
 	
 	public Pedido(List<Produto> produtoList) {
 		super(produtoList);
 	}
 
-	public Pedido(List<Produto> produtoList, String numero, LocalDate dataAbertura) {
+	public Pedido(List<Produto> produtoList, int numero, LocalDate dataAbertura) {
 		super(produtoList);
 		this.numero = numero;
 		this.dataAbertura = dataAbertura;
 	}
 
-	public String getNumero() {
+	public int getNumero() {
 		return numero;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNumero(int numero) {
+		this.numero = gerarNumero(0);
 	}
 
 	public LocalDate getDataAbertura() {
@@ -31,10 +31,12 @@ public class Pedido extends Carrinho {
 	}
 
 	public void setDataAbertura(LocalDate dataAbertura) {
-		this.dataAbertura = dataAbertura;
+		this.dataAbertura = LocalDate.now();
 	}
 	
-	
+	public int gerarNumero(int numero) {
+		return ++numero;
+	}
 
 	@Override
 	public void vizualizarProduto() {

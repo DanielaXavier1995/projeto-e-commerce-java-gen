@@ -11,9 +11,16 @@ public abstract class Carrinho{
 		super();
 		this.produtoList = new ArrayList<Produto>();
 	}
-	
+
 	public void adicionarProduto(Produto produto) {
         this.produtoList.add(produto);
+    }
+	
+	public Produto buscarProduto(String codigo) {
+        for (var p: produtoList) {
+        	return p;
+        }
+        return null;
     }
 
     public void removerProduto(Produto produto) {

@@ -48,7 +48,6 @@ public class Produto {
 	}
 	
 public void vizualizarProduto() {
-		
 	
 		System.out.println("*************************************************");
 		System.out.println("               INFORMAÇÕES DO CARINHO            ");

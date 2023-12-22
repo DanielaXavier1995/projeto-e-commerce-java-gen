@@ -12,18 +12,17 @@ public class ProdutoController implements produtoRepository {
 
 	int numero = 0;
 
-	Pedido p = new Pedido(produtoList);
+	Pedido pedido = new Pedido(produtoList);
 
 	@Override
 	public void procurarPorCodigo(String codigo) {
 		var produto = buscarNaCollection(codigo);
 
 		if (produto != null) {
-			p.vizualizarProduto();
+			produto.vizualizarProduto();
 		} else {
 			System.out.println("\nO produto não foi encontrado!");
 		}
-
 	}
 
 	@Override
@@ -35,7 +34,7 @@ public class ProdutoController implements produtoRepository {
 
 	@Override
 	public void cadastrar(Produto produto) {
-		p.adicionarProduto(produto);
+		produtoList.add(produto);
 		System.out.println("\nO produto foi criado com sucesso!!");
 	}
 
@@ -49,7 +48,6 @@ public class ProdutoController implements produtoRepository {
 		} else {
 			System.out.println("\nO produto não foi encontrado!");
 		}
-
 	}
 
 	@Override
@@ -64,23 +62,35 @@ public class ProdutoController implements produtoRepository {
 		}
 	  }
 	}
-
+	
 	@Override
-	public void remover(int numero) {
-		// TODO Auto-generated method stub
+	public void inserir(String codigo) {
 
+		var prod = buscarNaCollection(codigo);
+
+		if (prod != null) {
+			pedido.adicionarProduto(prod);
+		} else {
+			System.out.println("\nO produto não foi encontrado!");
+		}
 	}
 
 	@Override
-	public void inserir(int numero) {
-		// TODO Auto-generated method stub
+	public void remover(String codigo) {
+		var prod = pedido.buscarProduto(codigo);
 
-	}
+		if (prod != null) {
+			    pedido.removerProduto(prod);
+				System.out.println("\nO produto foi removido do carrinho!");
+			} else {
+				System.out.println("\nO produto não foi encontrado!");
+			}
+		}
+	
 
 	@Override
 	public void mostrarPedido() {
-		// TODO Auto-generated method stub
-
+		pedido.vizualizarProduto();
 	}
 
 	public Produto buscarNaCollection(String codigo) {

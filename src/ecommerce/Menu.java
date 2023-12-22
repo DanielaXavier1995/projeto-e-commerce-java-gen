@@ -1,48 +1,50 @@
 package ecommerce;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 import ecommerce.controller.ProdutoController;
-import ecommerce.model.Pedido;
 import ecommerce.model.Produto;
 
 public class Menu {
 
 	public static Scanner leia = new Scanner(System.in);
 	
-	public static void cadastrar(ProdutoController produto) {
+	public static void cadastrar(ProdutoController produto, String cod) {
 
 		System.out.print("Digite o nome do produto: ");
 		String nome = leia.nextLine();
 		System.out.print("Digite o código do produto: ");
-		String codigo = leia.nextLine();
+		cod = leia.nextLine();
 		System.out.print("Digite a categoria do produto: ");
 		String categoria = leia.nextLine();
 		System.out.print("Digite o valor do produto (R$): ");
 		float valor = leia.nextFloat();
 		leia.skip("\\R?");
+		
+		produto.cadastrar(new Produto(nome, cod, categoria, valor));
+	}
+	
+        public static void atualizar(ProdutoController produto, String codigo) {
+		
+        	System.out.print("Digite o nome do produto: ");
+    		String nome = leia.nextLine();
+    		System.out.print("Digite a categoria do produto: ");
+    		String categoria = leia.nextLine();
+    		System.out.print("Digite o valor do produto (R$): ");
+    		float valor = leia.nextFloat();
+    		leia.skip("\\R?");
+    		
+    		produto.atualizar(new Produto(nome, codigo, categoria, valor));
 	}
 
-	public static void main(String[] args) {
-		
-		Produto p1 = new Produto("toalha", "123", "vestuario", 75f);
+	   public static void main(String[] args) {
 		
 		ProdutoController produtos = new ProdutoController();
-//		
-//		ArrayList<Produto> produtos = new ArrayList<Produto>();
-//		produtos.add(p1);
-//		
-//		Pedido pedido = new Pedido(produtos, "222", LocalDate.of(2023, 12, 22));
-//		
-//		pedido.vizualizarProduto();
 
-		int opcao = 0, numero;
-		float valor;
+		int opcao = 0;
+		String cod = null;
 
 		while (true) {
 
@@ -58,7 +60,7 @@ public class Menu {
 			System.out.println("            4 - Atualizar Dados do produto           ");
 			System.out.println("            5 - Apagar produto                       ");
 			System.out.println("            6 - Retirar produto do Carrinho          ");
-			System.out.println("            7 - Inserir produto  do Carrinho         ");
+			System.out.println("            7 - Inserir produto no Carrinho         ");
 			System.out.println("            8 - Mostrar Pedido                       ");
 			System.out.println("            9 - Sair                                 ");
 			System.out.println("                                                     ");
@@ -83,7 +85,7 @@ public class Menu {
 			switch (opcao) {
 			case 1:
 				System.out.println("\n       Cadastrar Produto      \n");
-                cadastrar(produtos);
+                cadastrar(produtos, cod);
 				keyPress();
 				break;
 			case 2:
@@ -94,36 +96,47 @@ public class Menu {
 			case 3:
 				System.out.println("\n Buscar produto por Código \n");
 				System.out.print("Digite o Código do produto: ");
+				cod = leia.nextLine();
+				
+				produtos.procurarPorCodigo(cod);
 
 				keyPress();
 				break;
 			case 4:
 				System.out.println("\n Atualizar Dados do produto \n");
-				System.out.print("Digite o número do Produto: ");
-				numero = leia.nextInt();
+				System.out.print("Digite o Código do produto: ");
+				cod = leia.nextLine();
+				
+				atualizar(produtos, cod);
 
 				keyPress();
 				break;
 			case 5:
 				System.out.println("\n       Apagar produto       \n");
-				System.out.print("Digite o número do Produto: ");
-				numero = leia.nextInt();
+				System.out.print("Digite o Código do produto: ");
+				cod = leia.nextLine();
+				
+				produtos.deletar(cod);
 
 				keyPress();
 				break;
 			case 6:
 				System.out.println("\n       Retirar produto  do Carrinho       \n");
 
-				System.out.print("Digite o número do Produto: ");
-				numero = leia.nextInt();
+				System.out.print("Digite o Código do produto: ");
+				cod = leia.nextLine();
 
+				produtos.remover(cod);
+				
 				keyPress();
 				break;
 			case 7:
-				System.out.println("\n      Repor produto  do Carrinho      \n");
+				System.out.println("\n      Inserir produto no Carrinho      \n");
 
-				System.out.print("Digite o número do Produto: ");
-				numero = leia.nextInt();
+				System.out.print("Digite o Código do produto: ");
+				cod = leia.nextLine();
+				
+				produtos.inserir(cod);
 
 				keyPress();
 				break;
@@ -131,8 +144,10 @@ public class Menu {
 			case 8:
 				System.out.println("\n      Mostrar Pedido      \n");
 
-				System.out.print("Digite o número do Produto: ");
-				numero = leia.nextInt();
+				System.out.print("Digite o Código do produto: ");
+				cod = leia.nextLine();
+				
+				produtos.mostrarPedido();
 
 				keyPress();
 				break;
